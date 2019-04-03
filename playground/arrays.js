@@ -135,11 +135,11 @@ elementAt(numeros, 10);
 elementAt(numeros, 100);
 
 // Exercise 6
-function elementExist(array, element){
+function exitsElement(array, element){
   var encontrado = false;
   var i=0;
   while (i < array.length && !encontrado){
-    encontrado = (elemento == array[i]);
+    encontrado = (element == array[i]);
     i++;
   }
   return encontrado;
@@ -147,18 +147,28 @@ function elementExist(array, element){
 
 function elementRepeats(array) {
   var repetidos=[];
+  var repeticion = false;
   
   for (var i=0; i<(array.length -1); i++){
-    
+    if (!exitsElement(repetidos, array[i])){
+      repeticion = false;
+      for(var j = i+1; j < array.length; j++){
+        if(array[i] == array[j]){
+          repeticion = true;
+        }
+      }
+      if(repeticion){
+        repetidos.push(array[i]);
+      }
+    }
   }
-  
   
   for(var i=0; i < repetidos.length; i++) {
     console.log(repetidos[i]);
   }
 }
 
-var lista = [3,6,67,6,23,11,100,8,93,0,17,24,7,1,33,45,28,33,23,12,99,100];
+var lista = [3,6,67,6,23,11,100,8,93,0,6,17,24,7,1,33,45,6,28,33,23,12,99,100];
 console.log("");
 console.log("Elemento repetidos de un array:");
 console.log("-------------------------------");
