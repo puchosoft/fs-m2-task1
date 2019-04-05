@@ -22,9 +22,9 @@ console.log("---------------------");
 console.log("El reverso de "+ numero +" es "+reverseNumber(numero));
 
 // Exercise 2
-//---------------------------------------------
-// Funcion que
-//---------------------------------------------
+//---------------------------------------------------------------
+// Funcion que ordena alfabeticamente los caracteres de un string
+//---------------------------------------------------------------
 function orderString(string){
   var cadenaOrdenada = "";
   var caracter = '';
@@ -37,29 +37,56 @@ function orderString(string){
     }
   }
 
-  if(cadenaOrdenada.length > 1){
-    for(var i=0; i<cadenaOrdenada.length-2; i++){
-      
-      for(var j=i; j<cadenaOrdenada.length-1; j++){
-        
-        var c1=cadenaOrdenada[j];
-        console.log(c1);
-        var c2=cadenaOrdenada[j+1];
-        console.log(c2);
-        console.log("");
+  if(cadenaOrdenada.length > 1){ // Si la cadena tiene mas de una letra ...
+    cadenaOrdenada = cadenaOrdenada.split(""); // ... la convierte a array
+
+    for(var j=1; j < cadenaOrdenada.length; j++){ // Ordenamiento por metodo de burbuja
+      for(var i=0; i < cadenaOrdenada.length - j; i++){
+        var c1=cadenaOrdenada[i];
+        var c2=cadenaOrdenada[i+1];
         if(c1>c2){
-          cadenaOrdenada[j]=c2;
-          cadenaOrdenada[j+1]=c1;
+          cadenaOrdenada[i]=c2;
+          cadenaOrdenada[i+1]=c1;
         }
       }
     }
   }
-  
-  return(cadenaOrdenada);
+
+  // Todo el IF anterior se puede reemplazar por las siguientes 2 lineas
+  //cadenaOrdenada = cadenaOrdenada.split("");
+  //cadenaOrdenada = cadenaOrdenada.sort();
+
+  return(cadenaOrdenada.join("")); // Convierte a String y devuelve el resultado
 }
 
-var cadena = "Cachorro";
+var cadena = "WebMaster!";
 console.log("");
 console.log("Ordenamiento de un String:");
 console.log("---------------------");
 console.log("Ordenando \""+ cadena +"\" resulta \""+orderString(cadena)+"\"");
+
+// Exercise 3
+//---------------------------------------------------------------------
+// Funcion que capitaliza la primera letra de cada palabra de un string
+//---------------------------------------------------------------------
+function capitalizeString(frase){
+  var palabras = frase.split(" ");
+  for(var i=0; i < palabras.length; i++){
+    var letras=palabras[i].split("");
+    var car = letras[0];
+    if(car >= 'a' && car <= 'z'){
+      car=String.fromCharCode(car.charCodeAt(0)-32);
+      letras[0]=car;
+    }
+    palabras[i]=letras.join("");
+  }
+  return(palabras.join(" "));
+}
+
+var cadena = "prince of persia !";
+console.log("");
+console.log("Capitalizacion de un String:");
+console.log("----------------------------");
+console.log("capitalizando \""+ cadena +"\" resulta \""+capitalizeString(cadena)+"\"");
+
+// Exercise 4
