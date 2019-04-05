@@ -84,7 +84,7 @@ for (i=0; i < classAges.length; i++) {
 
 // Exercise 3
 function lowestElement(array) {
-  var lowest = 9e99;
+  var lowest = 9e99; // Inicializo con un valor muuuuyyyy grande
   for (var i=0; i<array.length; i++){
     if (array[i] < lowest){
       lowest = array[i];
@@ -101,7 +101,7 @@ lowestElement(numeros);
 
 // Exercise 4
 function biggestElement(array) {
-  var biggest = -9e99;
+  var biggest = -9e99; // Inicializo con un valor muuuuyyyy chico
   for (var i=0; i<array.length; i++){
     if (array[i] > biggest){
       biggest = array[i];
@@ -118,7 +118,7 @@ biggestElement(numeros);
 // Exercise 5
 function elementAt(array, index) {
   var element;
-  if(index < array.length && index >=0) {
+  if(index < array.length && index >=0) { // Verifica si el indice está en el rango correcto
     element = array[index];
   }
   else {
@@ -135,6 +135,9 @@ elementAt(numeros, 10);
 elementAt(numeros, 100);
 
 // Exercise 6
+//-------------------------------------------------------------
+// Funcion que indica si existe un elemento dentro de un array
+//-------------------------------------------------------------
 function exitsElement(array, element){
   var encontrado = false;
   var i=0;
@@ -145,25 +148,28 @@ function exitsElement(array, element){
   return encontrado;
 }
 
+//---------------------------------------------------------------
+// Funcion que indica si un elemento se repite dentro de un array
+//---------------------------------------------------------------
 function elementRepeats(array) {
-  var repetidos=[];
-  var repeticion = false;
+  var repetidos=[]; // array auxiliar para guardar los repetidos
+  var repeticion = false; // flag para elemento repetido
   
-  for (var i=0; i<(array.length -1); i++){
-    if (!exitsElement(repetidos, array[i])){
+  for (var i=0; i<(array.length -1); i++){ // Recorre el array hasta el penultimo elemento
+    if (!exitsElement(repetidos, array[i])){ // Si el elemento no existe en el array "repetidos" ...
       repeticion = false;
-      for(var j = i+1; j < array.length; j++){
+      for(var j = i+1; j < array.length; j++){ // ... lo busca en el resto del array "array"
         if(array[i] == array[j]){
-          repeticion = true;
+          repeticion = true; // Si lo encuentra cambia el flag "repeticion"
         }
       }
       if(repeticion){
-        repetidos.push(array[i]);
+        repetidos.push(array[i]); // Si encontró el elemento lo agrega al array "repetidos"
       }
     }
   }
   
-  for(var i=0; i < repetidos.length; i++) {
+  for(var i=0; i < repetidos.length; i++) { // Muestro los elementos que se repiten
     console.log(repetidos[i]);
   }
 }
@@ -173,3 +179,26 @@ console.log("");
 console.log("Elemento repetidos de un array:");
 console.log("-------------------------------");
 elementRepeats(lista);
+
+// Exercise 7
+//----------------------------------------------------------------------------
+// Funcion que devuelve un string que contiene la union de todos los elementos
+// de un array entre comillas y separados por comas
+//----------------------------------------------------------------------------
+function joinElements(array){
+  var cadena = "";
+  for (var i=0;i < array.length; i++){
+    cadena+="\""+array[i]+"\"";
+    if(i < array.length -1){
+      cadena+=",";
+    }
+  }
+  return(cadena);
+}
+
+myColor = ["Red", "Green", "White", "Black"];
+console.log("");
+console.log("Elemento unidos de un array:");
+console.log("-------------------------------");
+console.log(joinElements(myColor));
+
