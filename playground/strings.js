@@ -70,23 +70,44 @@ console.log("Ordenando \""+ cadena +"\" resulta \""+orderString(cadena)+"\"");
 // Funcion que capitaliza la primera letra de cada palabra de un string
 //---------------------------------------------------------------------
 function capitalizeString(frase){
-  var palabras = frase.split(" ");
+  var palabras = frase.split(" "); // Divide la frase en palabras sueltas
   for(var i=0; i < palabras.length; i++){
-    var letras=palabras[i].split("");
-    var car = letras[0];
-    if(car >= 'a' && car <= 'z'){
-      car=String.fromCharCode(car.charCodeAt(0)-32);
-      letras[0]=car;
+    var letras=palabras[i].split(""); // Divide cada palabra en letras
+    var car = letras[0]; // Toma la primera letra de cada palabra
+    if(car >= 'a' && car <= 'z'){ // Si el caracter es una minuscula ...
+      car=String.fromCharCode(car.charCodeAt(0)-32); // ... lo convierte a mayuscula.
+      letras[0]=car; // Modifica el primer caracter de la palabra
     }
-    palabras[i]=letras.join("");
+    palabras[i]=letras.join("");// Une las letras en una palabra
   }
-  return(palabras.join(" "));
+  return(palabras.join(" "));// Devuelve la frase uniendo todas las palabras
 }
 
 var cadena = "prince of persia !";
 console.log("");
 console.log("Capitalizacion de un String:");
 console.log("----------------------------");
-console.log("capitalizando \""+ cadena +"\" resulta \""+capitalizeString(cadena)+"\"");
+console.log("Capitalizando \""+ cadena +"\" resulta \""+capitalizeString(cadena)+"\"");
 
 // Exercise 4
+//-------------------------------------------------------
+// Funcion que devuelve la palabra mas larga de una frase
+//-------------------------------------------------------
+function longestWord(frase){
+  var palabras = frase.split(" "); // Divide la frase en palabras
+  var maxLength = 0;
+  var longest = "";
+  for(var i=0; i < palabras.length; i++){ //Recorre todas las palabras
+    if(palabras[i].length > maxLength){ // Si la longitud de la palabra supera la maxima actual ...
+      maxLength = palabras[i].length; // ... actualiza el nuevo maximo ...
+      longest = palabras[i]; // ... y actualiza la palabra mas larga actual
+    }
+  }
+  return(longest); // Devuelve la palabra mas larga
+}
+
+var cadena = "Web Development Tutorial";
+console.log("");
+console.log("Palabra mas larga de una frase:");
+console.log("-------------------------------");
+console.log("Frase: \""+ cadena +"\"\nPalabra mas larga: \"" + longestWord(cadena) + "\"");
